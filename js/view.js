@@ -1,13 +1,14 @@
 class ShoppingView {
     constructor(model) {
-        model.subscribe(this.redrawList, this)
+        // The bind() method creates a new function that, when called, has its this keyword set to the provided value.
+        model.subscribe(this.redrawList.bind(this))
     }
 
-    redrawList(shoppingList, msg, self) {
+    redrawList(shoppingList, msg) {
         let tbl = document.getElementById("shoppinglist")
         tbl.innerHTML = ""
         for (let item of shoppingList.newItems) {
-            self.addRow(item, tbl)
+            this.addRow(item, tbl)
         }
     }
 

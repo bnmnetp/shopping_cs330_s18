@@ -2,6 +2,7 @@
 class Item {
     constructor(name, quantity, priority, store, section, price) {
         this.name = name;
+        this.quantity = quantity;
         this.priority = priority;
         this.store = store;
         this.section = section;
@@ -19,8 +20,8 @@ class Subject {
         this.handlers = []
     }
 
-    subscribe(fn, selfobj) {
-            this.handlers.push({fn: fn, selfobj:selfobj});
+    subscribe(fn) {
+            this.handlers.push(fn);
         }
      
     unsubscribe(fn) {
@@ -35,8 +36,8 @@ class Subject {
      
     publish(msg, someobj) {
         var scope = someobj || window;
-        for (let obj of this.handlers) {
-            obj.fn(scope, msg, obj.selfobj)
+        for (let fn of this.handlers) {
+            fn(scope, msg)
         }
     }
 }
