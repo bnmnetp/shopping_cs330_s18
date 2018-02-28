@@ -1,19 +1,17 @@
 class ShoppingView {
     constructor(model) {
-        model.subscribe(this.redrawList)
+        model.subscribe(this.redrawList, this)
     }
 
-    redrawList(shoppingList, msg) {
+    redrawList(shoppingList, msg, self) {
         let tbl = document.getElementById("shoppinglist")
         tbl.innerHTML = ""
         for (let item of shoppingList.newItems) {
-            addRow(item, tbl)
+            self.addRow(item, tbl)
         }
     }
 
-}
-
-function  addRow(item, parent) {
+    addRow(item, parent) {
         let row = document.createElement("tr")
         row.classList.add(item.priority)
         let cb = document.createElement("input")
@@ -28,3 +26,4 @@ function  addRow(item, parent) {
         }
         parent.appendChild(row)
     }
+}

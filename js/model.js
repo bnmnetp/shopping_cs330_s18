@@ -19,8 +19,8 @@ class Subject {
         this.handlers = []
     }
 
-    subscribe(fn) {
-            this.handlers.push(fn);
+    subscribe(fn, selfobj) {
+            this.handlers.push({fn: fn, selfobj:selfobj});
         }
      
     unsubscribe(fn) {
@@ -35,8 +35,8 @@ class Subject {
      
     publish(msg, someobj) {
         var scope = someobj || window;
-        for (let fn of this.handlers) {
-            fn(scope, msg)
+        for (let obj of this.handlers) {
+            obj.fn(scope, msg, obj.selfobj)
         }
     }
 }
