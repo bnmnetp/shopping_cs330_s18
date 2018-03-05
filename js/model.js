@@ -8,9 +8,20 @@ class Item {
         this.section = section;
         this.price = price;
 
-        this.purchased = false;
+        this._purchased = false;
 
     }
+
+    get purchased() {
+        return this._purchased;
+    }
+    
+    set purchased(nv) {
+        this._purchased = nv;
+        alert(`${this.name} was purchased`)
+    }
+
+
 
 }
 
