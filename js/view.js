@@ -18,12 +18,18 @@ class ShoppingView {
         let cb = document.createElement("input")
         cb.type = "checkbox"
         cb.classList.add("form-control")
-        cb.onclick = function() { item.purchased = true; }
+        cb.onclick = function() { item.purchased = true ? !item.purchased : false  ; }
+        if (item.purchased) {
+            cb.checked = true;
+        }
         row.appendChild(cb)
         
         for (let val of ['name', 'quantity', 'store', 'section', 'price']) {
             let td = document.createElement("td")
             td.innerHTML = item[val]
+            if (item.purchased == true) {
+                td.classList.add('purchased')
+            }
             row.appendChild(td)
         }
         parent.appendChild(row)
