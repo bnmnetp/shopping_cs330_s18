@@ -3,6 +3,7 @@ var sections = ['Produce', 'Meats', 'Cereal', 'Canned Goods', 'Frozen Foods', 'D
 
 var shoppingModel = new ShoppingList()
 var myView = new ShoppingView(shoppingModel)
+var myDB = new LocalStorageSaver(shoppingModel,"brads_list")
 
 function clickedon() {
     let rowcolids = ['itemname', 'qty', 'store', 'category', 'price', 'priority']
